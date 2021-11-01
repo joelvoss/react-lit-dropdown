@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown should render proper HTML 1`] = `
+<body>
+  <div>
+    <div>
+      <button
+        id="actions-button"
+        type="button"
+      >
+        Actions 
+        <span
+          aria-hidden="true"
+        >
+          ▾
+        </span>
+      </button>
+      <p
+        data-testid="click-result"
+      >
+        Selected item: 
+        
+      </p>
+    </div>
+  </div>
+  <portal>
+    <div
+      hidden=""
+      style="position: absolute; display: none; left: 0px; top: 0px;"
+    >
+      <div
+        id="menu--6"
+        style="display: block; white-space: nowrap; border: 1px solid hsla(0, 0%, 0%, 0.25); background: rgb(255, 255, 255);"
+        tabindex="-1"
+      >
+        <div
+          data-valuetext="Dropdown Item"
+          id="option-0--menu--6"
+          style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
+          tabindex="-1"
+        >
+          Dropdown Item
+        </div>
+        <hr />
+        <a
+          data-valuetext="Dropdown Item Link"
+          href="#"
+          id="option-1--menu--6"
+          style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
+          tabindex="-1"
+        >
+          Dropdown Item Link
+        </a>
+      </div>
+    </div>
+  </portal>
+</body>
+`;
+
+exports[`Dropdown should render proper HTML 2`] = `
+<body>
+  <div>
+    <div>
+      <button
+        id="actions-button"
+        type="button"
+      >
+        Actions 
+        <span
+          aria-hidden="true"
+        >
+          ▾
+        </span>
+      </button>
+      <p
+        data-testid="click-result"
+      >
+        Selected item: 
+        
+      </p>
+    </div>
+  </div>
+  <portal>
+    <div
+      style="position: absolute; display: block; left: 0px; top: 0px;"
+    >
+      <div
+        id="menu--6"
+        style="display: block; white-space: nowrap; border: 1px solid hsla(0, 0%, 0%, 0.25); background: rgb(255, 255, 255);"
+        tabindex="-1"
+      >
+        <div
+          data-valuetext="Dropdown Item"
+          id="option-0--menu--6"
+          style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
+          tabindex="-1"
+        >
+          Dropdown Item
+        </div>
+        <hr />
+        <a
+          data-valuetext="Dropdown Item Link"
+          href="#"
+          id="option-1--menu--6"
+          style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
+          tabindex="-1"
+        >
+          Dropdown Item Link
+        </a>
+      </div>
+    </div>
+  </portal>
+</body>
+`;

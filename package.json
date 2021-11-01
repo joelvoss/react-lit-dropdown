@@ -1,0 +1,62 @@
+{
+  "name": "@react-lit/dropdown",
+  "version": "0.1.0",
+  "author": "Joel Voss <mail@joelvoss.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelvoss/react-lit-dropdown.git"
+  },
+  "type": "module",
+  "source": "src/index.js",
+  "main": "dist/react-lit-dropdown.cjs",
+  "module": "dist/react-lit-dropdown.module.js",
+  "exports": {
+    "require": "./dist/react-lit-dropdown.cjs",
+    "import": "./dist/react-lit-dropdown.modern.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "./Taskfile.sh test",
+    "prepublishOnly": "./Taskfile.sh build"
+  },
+  "dependencies": {
+    "@react-lit/auto-id": "^0.1.0",
+    "@react-lit/descendants": "^0.1.0",
+    "@react-lit/helper": "^0.3.0",
+    "@react-lit/popover": "^0.1.0"
+  },
+  "devDependencies": {
+    "@jvdx/core": "^2.7.0",
+    "@react-lit/tooltip": "^0.1.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "jest-axe": "^5.0.1",
+    "parcel": "^2.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "peerDependencies": {
+    "react": "17.x",
+    "react-dom": "17.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "prettier": "@jvdx/prettier-config",
+  "prettierIgnore": [
+    "tests/",
+    "dist/"
+  ],
+  "eslintConfig": {
+    "extends": "@jvdx/eslint-config"
+  },
+  "eslintIgnore": [
+    "tests/",
+    "dist/"
+  ]
+}
