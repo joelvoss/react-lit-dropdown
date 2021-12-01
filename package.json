@@ -15,6 +15,7 @@
     "require": "./dist/react-lit-dropdown.cjs",
     "import": "./dist/react-lit-dropdown.modern.js"
   },
+  "types": "dist/index.d.js",
   "files": [
     "dist",
     "LICENSE"
@@ -26,17 +27,17 @@
   "dependencies": {
     "@react-lit/auto-id": "^0.1.0",
     "@react-lit/descendants": "^0.1.0",
-    "@react-lit/helper": "^0.3.0",
+    "@react-lit/helper": "^0.4.0",
     "@react-lit/popover": "^0.1.0"
   },
   "devDependencies": {
-    "@jvdx/core": "^2.7.0",
+    "@jvdx/core": "^2.9.1",
     "@react-lit/tooltip": "^0.1.0",
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "jest-axe": "^5.0.1",
-    "parcel": "^2.0.0",
+    "parcel": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
