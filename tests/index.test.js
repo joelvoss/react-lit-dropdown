@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { render, userEvent } from './test-utils';
-import { axe } from 'jest-axe';
 
 import {
 	DropdownProvider,
@@ -9,7 +8,6 @@ import {
 	DropdownItems,
 	DropdownItem,
 } from '../src/index';
-import { act } from 'react-dom/test-utils';
 
 describe('Dropdown', () => {
 	const Comp = () => {
@@ -43,13 +41,10 @@ describe('Dropdown', () => {
 
 	it('should not have ARIA violations', async () => {
 		let { container, queryByText } = render(<Comp />);
-		await act(async () => {
-			expect(await axe(container)).toHaveNoViolations();
-		});
+		await expect(container).toHaveNoAxeViolations();
+
 		userEvent.click(queryByText(/Actions/i));
-		await act(async () => {
-			expect(await axe(container)).toHaveNoViolations();
-		});
+		await expect(container).toHaveNoAxeViolations();
 	});
 
 	it('should render proper HTML', async () => {
