@@ -15,7 +15,7 @@
     "require": "./dist/react-lit-dropdown.cjs",
     "import": "./dist/react-lit-dropdown.modern.js"
   },
-  "types": "dist/index.d.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "LICENSE"
