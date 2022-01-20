@@ -1,13 +1,4 @@
-import {
-	forwardRef,
-	useCallback,
-	useContext,
-	useEffect,
-	useMemo,
-	useReducer,
-	useRef,
-	useState,
-} from 'react';
+import * as React from 'react';
 import { useId } from '@react-lit/auto-id';
 import { Popover } from '@react-lit/popover';
 import {
@@ -101,9 +92,9 @@ const initialState = {
 ////////////////////////////////////////////////////////////////////////////////
 
 export const DropdownProvider = ({ id, children }) => {
-	const triggerRef = useRef(null);
-	const dropdownRef = useRef(null);
-	const popoverRef = useRef(null);
+	const triggerRef = React.useRef(null);
+	const dropdownRef = React.useRef(null);
+	const popoverRef = React.useRef(null);
 
 	const [descendants, descendantsSet] = useDescendantsInit();
 
@@ -111,7 +102,7 @@ export const DropdownProvider = ({ id, children }) => {
 	const dropdownId = id || makeId('menu', _id);
 	const triggerId = makeId('menu-button', dropdownId);
 
-	const [state, dispatch] = useReducer(reducer, {
+	const [state, dispatch] = React.useReducer(reducer, {
 		...initialState,
 		triggerId,
 	});
@@ -120,12 +111,12 @@ export const DropdownProvider = ({ id, children }) => {
 	// outside clicks that close the dropdown. We don't want the initial button
 	// click to trigger this when a dropdown is closed, so we can track this
 	// behavior in a ref.
-	const triggerClickedRef = useRef(false);
+	const triggerClickedRef = React.useRef(false);
 
 	// NOTE(joel): We will put children callbacks in a ref to avoid triggering
 	// endless render loops when using render props if the app code doesn't
-	// useCallback.
-	const selectCallbacks = useRef([]);
+	// React.useCallback.
+	const selectCallbacks = React.useRef([]);
 
 	// NOTE(joel): If the popover's position overlaps with an option when the
 	// popover initially opens, the mouseup event will trigger a select. To
@@ -133,8 +124,8 @@ export const DropdownProvider = ({ id, children }) => {
 	// the pointer moves a certain distance OR if the mouse button is pressed for
 	// a certain length of time, otherwise the user is just registering the
 	// initial button click rather than selecting an item.
-	const readyToSelect = useRef(false);
-	const mouseDownStartPosRef = useRef({ x: 0, y: 0 });
+	const readyToSelect = React.useRef(false);
+	const mouseDownStartPosRef = React.useRef({ x: 0, y: 0 });
 
 	const context = {
 		dispatch,
@@ -151,7 +142,7 @@ export const DropdownProvider = ({ id, children }) => {
 
 	// NOTE(joel): When the dropdown is open, focus is placed on the dropdown
 	// itself so that keyboard navigation is still possible.
-	useEffect(() => {
+	React.useEffect(() => {
 		if (state.isExpanded) {
 			window.__REACT_LIT_DISABLE_TOOLTIPS = true;
 			window.requestAnimationFrame(() => {
@@ -203,12 +194,12 @@ export function useDropdownTrigger({
 	const ref = useComposeRefs(triggerRef, parentRef);
 	const items = useDropdownDescendants();
 
-	const firstNonDisabledIndex = useMemo(
+	const firstNonDisabledIndex = React.useMemo(
 		() => items.findIndex(item => !item.disabled),
 		[items],
 	);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (id != null && id !== triggerId) {
 			dispatch({
 				type: ActionType.SET_BUTTON_ID,
@@ -279,7 +270,7 @@ export function useDropdownTrigger({
 
 ////////////////////////////////////////////////////////////////////////////////
 
-export const DropdownTrigger = forwardRef(
+export const DropdownTrigger = React.forwardRef(
 	({ as: Comp = 'button', ...rest }, parentRef) => {
 		let { props } = useDropdownTrigger({ ...rest, ref: parentRef });
 		return <Comp {...props} />;
@@ -315,14 +306,14 @@ export function useDropdownItem({
 		state: { selectionIndex, isExpanded },
 	} = useDropdownContext();
 
-	const ownRef = useRef(null);
-	const mouseEventStarted = useRef(false);
+	const ownRef = React.useRef(null);
+	const mouseEventStarted = React.useRef(false);
 
 	// After the ref is mounted to the DOM node, we check to see if we have an
 	// explicit valueText prop before looking for the node's textContent for
 	// typeahead functionality.
-	const [valueText, valueTextSet] = useState(valueTextProp || '');
-	const setValueTextFromDOM = useCallback(
+	const [valueText, valueTextSet] = React.useState(valueTextProp || '');
+	const setValueTextFromDOM = React.useCallback(
 		node => {
 			if (!valueTextProp && node?.textContent) {
 				valueTextSet(node.textContent);
@@ -334,7 +325,7 @@ export function useDropdownItem({
 	const [element, handleRefSet] = useStatefulRefValue(ownRef, null);
 	const ref = useComposeRefs(parentRef, handleRefSet, setValueTextFromDOM);
 
-	const descendant = useMemo(
+	const descendant = React.useMemo(
 		() => ({
 			element,
 			key: valueText,
@@ -496,7 +487,7 @@ export function useDropdownItem({
 	// on macOS, where opening a menu on top of a trigger would otherwise
 	// result in an immediate accidental selection once the click trigger is
 	// released.
-	useEffect(() => {
+	React.useEffect(() => {
 		if (isExpanded) {
 			const id = window.setTimeout(() => {
 				readyToSelect.current = true;
@@ -513,7 +504,7 @@ export function useDropdownItem({
 
 	// NOTE(joel): Any time a mouseup event occurs anywhere in the document, we
 	// reset the `mouseEventStarted` ref so we can check it again when needed.
-	useEffect(() => {
+	React.useEffect(() => {
 		function listener() {
 			mouseEventStarted.current = false;
 		}
@@ -551,7 +542,7 @@ export function useDropdownItem({
 
 ////////////////////////////////////////////////////////////////////////////////
 
-export const DropdownItem = forwardRef(
+export const DropdownItem = React.forwardRef(
 	({ as: Comp = 'div', style, ...rest }, parentRef) => {
 		const { props } = useDropdownItem({ ...rest, ref: parentRef });
 		const { 'data-selected': dataSelected, 'data-disabled': dataDisabled } =
@@ -603,7 +594,7 @@ export function useDropdownItems({ id, onKeyDown, ref: parentRef, ...props }) {
 	// NOTE(joel): Handle responing to char input changes by the user with our
 	// typeahead functionality, e.g. the user starts typing when the dropdown is
 	// focused to search for a specific dropdown item.
-	useEffect(() => {
+	React.useEffect(() => {
 		const match = findItemFromTypeahead(items, typeaheadQuery);
 		if (typeaheadQuery && match != null) {
 			dispatch({
@@ -631,7 +622,7 @@ export function useDropdownItems({ id, onKeyDown, ref: parentRef, ...props }) {
 
 	// NOTE(joel): Sync changes to the selection index in state and handle all
 	// known edge cases.
-	useEffect(() => {
+	React.useEffect(() => {
 		if (selectionIndex > items.length - 1) {
 			// NOTE(joel): Edge case - If for some reason our selection index is
 			// larger than our possible index range (e.g. the last item is selected
@@ -765,7 +756,7 @@ export function useDropdownItems({ id, onKeyDown, ref: parentRef, ...props }) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-export const DropdownItems = forwardRef(
+export const DropdownItems = React.forwardRef(
 	({ as: Comp = 'div', ...rest }, parentRef) => {
 		const { props } = useDropdownItems({ ...rest, ref: parentRef });
 		return (
@@ -802,7 +793,7 @@ export function useDropdownPopover({
 
 	let ref = useComposeRefs(popoverRef, parentRef);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (!isExpanded) {
 			return;
 		}
@@ -860,7 +851,7 @@ export function useDropdownPopover({
 
 ////////////////////////////////////////////////////////////////////////////////
 
-export const DropdownPopover = forwardRef(
+export const DropdownPopover = React.forwardRef(
 	({ as: Comp = 'div', style, ...rest }, parentRef) => {
 		const { data, props } = useDropdownPopover({ ...rest, ref: parentRef });
 
@@ -914,7 +905,7 @@ function findItemFromTypeahead(items, string = '') {
  * @returns {string | undefined}
  */
 function useItemId(index) {
-	let { dropdownId } = useContext(DropdownContext);
+	let { dropdownId } = React.useContext(DropdownContext);
 	return index != null && index > -1
 		? makeId(`option-${index}`, dropdownId)
 		: undefined;
@@ -1055,7 +1046,7 @@ function reducer(state, action = {}) {
  * @returns {React.Context<DropdownContextValue>}
  */
 export function useDropdownContext() {
-	return useContext(DropdownContext);
+	return React.useContext(DropdownContext);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
