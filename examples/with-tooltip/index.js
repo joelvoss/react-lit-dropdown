@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import * as React from 'react';
 import { Tooltip } from '@react-lit/tooltip';
 import {
 	DropdownProvider,
@@ -9,7 +9,7 @@ import {
 } from '../../src/index';
 
 export function Example() {
-	const [action, actionSet] = useState('');
+	const [action, actionSet] = React.useState('');
 
 	return (
 		<>

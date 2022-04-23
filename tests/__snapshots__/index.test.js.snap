@@ -19,7 +19,6 @@ exports[`Dropdown should render proper HTML 1`] = `
         data-testid="click-result"
       >
         Selected item: 
-        
       </p>
     </div>
   </div>
@@ -29,13 +28,13 @@ exports[`Dropdown should render proper HTML 1`] = `
       style="position: absolute; display: none; left: 0px; top: 0px;"
     >
       <div
-        id="menu--6"
+        id="menu--7"
         style="display: block; white-space: nowrap; border: 1px solid hsla(0, 0%, 0%, 0.25); background: rgb(255, 255, 255);"
         tabindex="-1"
       >
         <div
           data-valuetext="Dropdown Item"
-          id="option-0--menu--6"
+          id="option-0--menu--7"
           style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
           tabindex="-1"
         >
@@ -45,7 +44,7 @@ exports[`Dropdown should render proper HTML 1`] = `
         <a
           data-valuetext="Dropdown Item Link"
           href="#"
-          id="option-1--menu--6"
+          id="option-1--menu--7"
           style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
           tabindex="-1"
         >
@@ -76,7 +75,6 @@ exports[`Dropdown should render proper HTML 2`] = `
         data-testid="click-result"
       >
         Selected item: 
-        
       </p>
     </div>
   </div>
@@ -85,13 +83,13 @@ exports[`Dropdown should render proper HTML 2`] = `
       style="position: absolute; display: block; left: 0px; top: 0px;"
     >
       <div
-        id="menu--6"
+        id="menu--7"
         style="display: block; white-space: nowrap; border: 1px solid hsla(0, 0%, 0%, 0.25); background: rgb(255, 255, 255);"
         tabindex="-1"
       >
         <div
           data-valuetext="Dropdown Item"
-          id="option-0--menu--6"
+          id="option-0--menu--7"
           style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
           tabindex="-1"
         >
@@ -101,7 +99,7 @@ exports[`Dropdown should render proper HTML 2`] = `
         <a
           data-valuetext="Dropdown Item Link"
           href="#"
-          id="option-1--menu--6"
+          id="option-1--menu--7"
           style="display: block; user-select: none; cursor: pointer; padding: 5px 20px;"
           tabindex="-1"
         >

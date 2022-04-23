@@ -49,14 +49,3 @@ export function render(element, options = {}) {
 
 	return result;
 }
-
-////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Stall for `time` milliseconds
- * @param {number} time 
- * @returns {Promise<void>}
- */
-export async function wait(time) {
-	return await new Promise(res => setTimeout(res, time));
-}

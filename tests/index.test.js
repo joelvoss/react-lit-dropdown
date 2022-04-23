@@ -43,14 +43,14 @@ describe('Dropdown', () => {
 		let { container, queryByText } = render(<Comp />);
 		await expect(container).toHaveNoAxeViolations();
 
-		userEvent.click(queryByText(/Actions/i));
+		await userEvent.click(queryByText(/Actions/i));
 		await expect(container).toHaveNoAxeViolations();
 	});
 
 	it('should render proper HTML', async () => {
 		const { baseElement, queryByText } = render(<Comp />);
 		expect(baseElement).toMatchSnapshot();
-		userEvent.click(queryByText(/Actions/i));
+		await userEvent.click(queryByText(/Actions/i));
 		expect(baseElement).toMatchSnapshot();
 	});
 });
